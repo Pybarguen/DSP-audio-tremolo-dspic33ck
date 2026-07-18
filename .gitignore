@@ -1,0 +1,11 @@
+# Carpetas temporales de compilación de MPLAB X
+build/
+dist/
+debug/
+
+# Carpetas ocultas o temporales locales
+.generated_files/
+queuelogs/
+
+# Archivos de autoguardado del MCC
+mcc-manifest-autosave.yml

@@ -23,71 +23,38 @@
 #include <stdint.h>
 #include "mcc_generated_files/system/pins.h"
 #include "mcc_generated_files/system/system.h"
-#include "mcc_generated_files/timer/sccp1.h"
 #include "mcc_generated_files/adc/adc1.h"
 #include "mcc_generated_files/adc/adc_interface.h"
+#include "mcc_generated_files/timer/sccp2.h"
+#include "mcc_generated_files/timer/sccp1.h"
 #define FCY 100000000UL
 #include <libpic30.h>
 
+extern const struct ADC_INTERFACE ADCAPP;
 
-#define UMBRAL_DISTORSION 800
-#define UMBRAL_SILENCIO   40
-#define Tremolo_Step 13
-
-const uint16_t Tremolo_lut[Tremolo_Step] = {
-    102,  // 0.1 (Muy pasito)
-    205,  // 0.2
-    307,  // 0.3
-    512,  // 0.5 (Mitad de volumen)
-    716,  // 0.7
-    870,  // 0.85
-    1024, // 1.0 (Volumen completo original)
-    870,  // 0.85 (Empezamos a bajar...)
-    716,  // 0.7
-    512,  // 0.5
-    307,  // 0.3
-    205,  // 0.2
-    102   // 0.1    
-    
-};
-
-
-uint16_t counter = 0;
-uint8_t  index = 0;
-
-void get_processing_data()
+uint16_t current_data_pot = 0;
+uint16_t current_data_mic=0;
+void Get_mic(void)
 {
+       int16_t abs_signal;
+       
+       
+     // 1. Disparar conversión por software dentro de la interrupción del timer
+    ADCAPP.SoftwareTriggerEnable();
     
-    counter++;
-    int32_t temp=0;
-    int16_t signal_processed=0;
+    // 2. Esperar a que termine la conversión del canal del potenciómetro
+    while(!ADCAPP.IsConversionComplete(Microphone)); // Ajusta Channel_AN5 al canal real de tu pote
     
-    if(counter>=1000){
-        
-        index++;
-        counter = 0;
-        
-         if(index>=Tremolo_Step)
-    {
-        
-        index=0;
-    }
-        
-        
-    }
-    int16_t abs_signal;
-     
-    // Leer directamente el valor del ADC (0 a 4095)
-    uint16_t current_data = AdcVoiceInput.ConversionResultGet(Microphone);
-    
+    // 3. Leer el resultado
+    current_data_mic = ADCAPP.ConversionResultGet(Microphone); 
     
     //Se resta el offset de 1.65V o 2048 del MAX4466 cuando esta en silencio
-    int16_t signal_audio = (int16_t)current_data - 2048;
+    int16_t signal_audio = (int16_t)current_data_mic - 2048;
     
-    //Se atenua la señal a 0.5 al 50% de su valor
+//        Se atenua la señal a 0.5 al 50% de su valor
     signal_audio = (signal_audio>>1);
     
-    //Variable para guardar el valor absoluto de la señal.
+     //Variable para guardar el valor absoluto de la señal.
     abs_signal = signal_audio;
     
     //Si el valor absoluto es menor que 0
@@ -104,43 +71,61 @@ void get_processing_data()
         signal_audio = 0;
         
     }
-    //variable temporal para alojar multiplicacion tremolo
-    temp = (int32_t)signal_audio * Tremolo_lut[index];
     
-    // Desplazamos para dividir por 1024 y volvemos a guardar en 16 bits
-    signal_processed = (int16_t)(temp >> 10);
+     //Volver a sumar el offset para el DAC
+    int32_t dac_val = (int32_t)signal_audio+ 2048;
     
-    
-    
-    //Volver a sumar el offset para el DAC
-    int32_t dac_val = (int32_t)signal_processed+ 2048;
-    
-    // Control de desborde seguro para el hardware
-    if (dac_val > 4095) dac_val = 4095;
-    if (dac_val < 0)    dac_val = 0;
-    
-   
     // Escribir directamente al DAC (sin ningún procesamiento)
     CMP1_DACDataWrite(dac_val);
     
-   
+  
+    
 }
-/*
-    Main application
-*/
+
+// Esta función se ejecutará automáticamente cada 100 ms gracias al SCCP2 (PotTimer)
+void Get_pot(void)
+{
+     
+     // 1. Disparar conversión por software dentro de la interrupción del timer
+    ADCAPP.SoftwareTriggerEnable();
+    
+    // 2. Esperar a que termine la conversión del canal del potenciómetro
+    while(!ADCAPP.IsConversionComplete(Tremole_speed)); // Ajusta Channel_AN5 al canal real de tu pote
+    
+    // 3. Leer el resultado
+   current_data_pot = ADCAPP.ConversionResultGet(Tremole_speed); 
+    
+    // 4. Controlar el LED
+    if(current_data_pot >= 2048)
+    {
+        Led_SetLow();
+    }
+    else
+    {
+        Led_SetHigh();
+    }
+}
 
 int main(void)
 {
+    // Inicializa todo el hardware configurado en el MCC (incluyendo pines, ADC y el SCCP2)
     SYSTEM_Initialize();
-    //LA funcion de llamada del ADC cada vez que se proboca el Trigger del SCCP1
-       AdcVoiceInput.CommonCallbackRegister(get_processing_data);
-       
-       AdcVoiceInput_IndividualChannelInterruptEnable(Microphone);
-        __builtin_enable_interrupts(); 
-        
-        //Inicia el temporizador
-        SCCP1_Timer_Start();
+    
+    __builtin_enable_interrupts();
+    
+   // Registrar la función para que el SCCP1 (MicTimer) la llame en su interrupción
+    Mic_Timer.TimeoutCallbackRegister(Get_mic);
+    
+    Mic_Timer.Start();
+    
+    //Registrar la función para que el SCCP2 (PotTimer) la llame en su interrupción
+   PotTimer.TimeoutCallbackRegister(Get_pot); // Nota: Dependiendo de la versión del MCC, puede ser PotTimer.TimeoutCallbackRegister o PotTimer_TimeoutCallbackRegister
+    
+    // Arrancar el temporizador del potenciómetro
+   PotTimer.Start();
+   
     while(1)
     {
+        // El bucle principal se queda libre para cuando implementes el procesamiento de audio pesado
     }    
 }

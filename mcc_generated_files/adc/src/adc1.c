@@ -80,7 +80,7 @@ static const struct ADC_MULTICORE adc1Multicore = {
 
 //Defines an object for ADC_INTERFACE.
 
-const struct ADC_INTERFACE AdcVoiceInput = {
+const struct ADC_INTERFACE ADCAPP = {
     .Initialize             = &ADC1_Initialize,
     .Deinitialize           = &ADC1_Deinitialize,
     .Enable                 = &ADC1_Enable,
@@ -257,10 +257,10 @@ void ADC1_Initialize (void)
     ADTRIG0L = 0x0U;
     //TRGSRC2 None; TRGSRC3 None; 
     ADTRIG0H = 0x0U;
-    //TRGSRC4 None; TRGSRC5 SCCP1 Trigger; 
-    ADTRIG1L = 0xC00U;
-    //TRGSRC6 None; TRGSRC7 None; 
-    ADTRIG1H = 0x0U;
+    //TRGSRC4 None; TRGSRC5 Common Software Trigger; 
+    ADTRIG1L = 0x100U;
+    //TRGSRC6 Common Software Trigger; TRGSRC7 None; 
+    ADTRIG1H = 0x1U;
     //TRGSRC8 None; TRGSRC9 None; 
     ADTRIG2L = 0x0U;
     //TRGSRC10 None; TRGSRC11 None; 
@@ -440,6 +440,9 @@ void ADC1_PWMTriggerSourceSet(enum ADC_CHANNEL channel, enum ADC_PWM_INSTANCE pw
         case Microphone:
                 ADTRIG1Lbits.TRGSRC5 = adcTriggerValue;
                 break;
+        case Tremole_speed:
+                ADTRIG1Hbits.TRGSRC6 = adcTriggerValue;
+                break;
         default:
                 break;
     }
@@ -484,6 +487,16 @@ void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCInterrupt ( void )
             (*ADC1_ChannelHandler)(Microphone, adcVal);
         }
         IFS6bits.ADCAN5IF = 0;
+    }
+    if(IFS6bits.ADCAN6IF == 1)
+    {
+        //Read the ADC value from the ADCBUF before clearing interrupt
+        adcVal = ADCBUF6;
+        if(NULL != ADC1_ChannelHandler)
+        {
+            (*ADC1_ChannelHandler)(Tremole_speed, adcVal);
+        }
+        IFS6bits.ADCAN6IF = 0;
     }
         
     // clear the ADC1 interrupt flag
@@ -542,6 +555,29 @@ void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCAN5Interrupt ( voi
     IFS6bits.ADCAN5IF = 0;
 }
 
+/* cppcheck-suppress misra-c2012-8.4
+*
+* (Rule 8.4) REQUIRED: A compatible declaration shall be visible when an object or 
+* function with external linkage is defined
+*
+* Reasoning: Interrupt declaration are provided by compiler and are available
+* outside the driver folder
+*/
+void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCAN6Interrupt ( void )
+{
+    uint16_t valTremole_speed;
+    //Read the ADC value from the ADCBUF
+    valTremole_speed = ADCBUF6;
+
+    if(NULL != ADC1_ChannelHandler)
+    {
+        (*ADC1_ChannelHandler)(Tremole_speed, valTremole_speed);
+    }
+
+    //clear the Tremole_speed interrupt flag
+    IFS6bits.ADCAN6IF = 0;
+}
+
 
 
 void __attribute__ ((weak)) ADC1_ChannelTasks (enum ADC_CHANNEL channel)
@@ -555,6 +591,18 @@ void __attribute__ ((weak)) ADC1_ChannelTasks (enum ADC_CHANNEL channel)
             {
                 //Read the ADC value from the ADCBUF
                 adcVal = ADCBUF5;
+
+                if(NULL != ADC1_ChannelHandler)
+                {
+                    (*ADC1_ChannelHandler)(channel, adcVal);
+                }
+            }
+            break;
+        case Tremole_speed:
+            if((bool)ADSTATLbits.AN6RDY == 1)
+            {
+                //Read the ADC value from the ADCBUF
+                adcVal = ADCBUF6;
 
                 if(NULL != ADC1_ChannelHandler)
                 {

@@ -55,8 +55,9 @@
 enum ADC_CHANNEL
 {
     Microphone,    /**<Channel Name:AN5   Assigned to:Shared Channel*/
-    MAX_CHANNELS = 1,    /**< MAX_CHANNELS will be removed in future MCC releases. Use ADC_MAX_CHANNELS instead */
-    ADC_MAX_CHANNELS = 1    /**< Maximum number of channels configured by user in MCC Melody User Interface */
+    Tremole_speed,    /**<Channel Name:AN6   Assigned to:Shared Channel*/
+    MAX_CHANNELS = 2,    /**< MAX_CHANNELS will be removed in future MCC releases. Use ADC_MAX_CHANNELS instead */
+    ADC_MAX_CHANNELS = 2    /**< Maximum number of channels configured by user in MCC Melody User Interface */
 };
 
 

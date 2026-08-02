@@ -1,11 +1,11 @@
 /**
- * SCCP1-TIMER Generated Driver Header File 
+ * SCCP2-TIMER Generated Driver Header File 
  * 
- * @file      sccp1.h
+ * @file      sccp2.h
  * 
  * @ingroup   timerdriver
  * 
- * @brief     This is the generated driver header file for the SCCP1-TIMER driver
+ * @brief     This is the generated driver header file for the SCCP2-TIMER driver
  *
  * @skipline @version   Firmware Driver Version 1.6.1
  *
@@ -35,8 +35,8 @@
     THIS SOFTWARE.
 */
 
-#ifndef SCCP1_H
-#define SCCP1_H
+#ifndef SCCP2_H
+#define SCCP2_H
 
 // Section: Included Files
 
@@ -56,155 +56,155 @@
  *           This allows defining a structure with application specific name using 
  *           the 'Custom Name' field. Application specific name allows the API Portability.
 */
-extern const struct TIMER_INTERFACE Mic_Timer;
+extern const struct TIMER_INTERFACE PotTimer;
 
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_Initialize API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_Initialize API
  */
-#define Mic_Timer_Initialize SCCP1_Timer_Initialize
+#define PotTimer_Initialize SCCP2_Timer_Initialize
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_Deinitialize API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_Deinitialize API
  */
-#define Mic_Timer_Deinitialize SCCP1_Timer_Deinitialize
+#define PotTimer_Deinitialize SCCP2_Timer_Deinitialize
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_Tasks API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_Tasks API
  */
-#define Mic_Timer_Tasks SCCP1_Timer_Tasks
+#define PotTimer_Tasks SCCP2_Timer_Tasks
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_Start API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_Start API
  */
-#define Mic_Timer_Start SCCP1_Timer_Start
+#define PotTimer_Start SCCP2_Timer_Start
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_Stop API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_Stop API
  */
-#define Mic_Timer_Stop SCCP1_Timer_Stop
+#define PotTimer_Stop SCCP2_Timer_Stop
 
 #if TIMER_PERIODCOUNTSET_API_SUPPORT
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_PeriodCountSet API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_PeriodCountSet API
  */
-#define Mic_Timer_PeriodCountSet SCCP1_Timer_PeriodCountSet
+#define PotTimer_PeriodCountSet SCCP2_Timer_PeriodCountSet
 #endif
 
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_PeriodSet API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_PeriodSet API
  */
-#define Mic_Timer_PeriodSet SCCP1_Timer_PeriodSet
+#define PotTimer_PeriodSet SCCP2_Timer_PeriodSet
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_PeriodGet API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_PeriodGet API
  */
-#define Mic_Timer_PeriodGet SCCP1_Timer_PeriodGet
+#define PotTimer_PeriodGet SCCP2_Timer_PeriodGet
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_CounterGet API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_CounterGet API
  */
-#define Mic_Timer_CounterGet SCCP1_Timer_CounterGet
+#define PotTimer_CounterGet SCCP2_Timer_CounterGet
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_Counter16BitGet API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_Counter16BitGet API
  */
-#define Mic_Timer_Counter16BitGet SCCP1_Timer_Counter16BitGet
+#define PotTimer_Counter16BitGet SCCP2_Timer_Counter16BitGet
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_InterruptPrioritySet API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_InterruptPrioritySet API
  */
-#define Mic_Timer_InterruptPrioritySet SCCP1_Timer_InterruptPrioritySet
+#define PotTimer_InterruptPrioritySet SCCP2_Timer_InterruptPrioritySet
 
 /**
  * @ingroup  timerdriver
- * @brief    This macro defines the Custom Name for \ref SCCP1_Timer_TimeoutCallbackRegister API
+ * @brief    This macro defines the Custom Name for \ref SCCP2_Timer_TimeoutCallbackRegister API
  */
-#define Mic_Timer_TimeoutCallbackRegister SCCP1_Timer_TimeoutCallbackRegister
+#define PotTimer_TimeoutCallbackRegister SCCP2_Timer_TimeoutCallbackRegister
 
 // Section: Driver Interface Functions
 
 /**
  * @ingroup  timerdriver
- * @brief    Initializes the SCCP1 module 
+ * @brief    Initializes the SCCP2 module 
  * @param    none
  * @return   none  
  */
-void SCCP1_Timer_Initialize (void);
+void SCCP2_Timer_Initialize (void);
 
 /**
  * @ingroup  timerdriver
- * @brief    Deinitializes the SCCP1 to POR values
+ * @brief    Deinitializes the SCCP2 to POR values
  * @param    none
  * @return   none  
  */
-void SCCP1_Timer_Deinitialize(void);
+void SCCP2_Timer_Deinitialize(void);
 
 /**
  * @ingroup  timerdriver
  * @brief    Starts the timer
- * @pre      \ref SCCP1_Timer_Initialize must be called
+ * @pre      \ref SCCP2_Timer_Initialize must be called
  * @param    none
  * @return   none  
  */
-void SCCP1_Timer_Start(void);
+void SCCP2_Timer_Start(void);
 
 /**
  * @ingroup  timerdriver
  * @brief    Stops the timer
- * @pre      \ref SCCP1_Timer_Initialize must be called
+ * @pre      \ref SCCP2_Timer_Initialize must be called
  * @param    none
  * @return   none  
  */
-void SCCP1_Timer_Stop(void);
+void SCCP2_Timer_Stop(void);
 
 /**
  * @ingroup  timerdriver
- * @brief    Sets the SCCP1-Timer period count value
- * @pre      \ref SCCP1_Timer_Initialize must be called
+ * @brief    Sets the SCCP2-Timer period count value
+ * @pre      \ref SCCP2_Timer_Initialize must be called
  * @param[in]  count - period value
  * @return   none  
  */
-void SCCP1_Timer_PeriodSet(uint32_t count);
+void SCCP2_Timer_PeriodSet(uint32_t count);
 
 /**
  * @ingroup  timerdriver
- * @brief    This inline function gets the SCCP1-Timer period count value
- * @pre      \ref SCCP1_Timer_Initialize must be called
+ * @brief    This inline function gets the SCCP2-Timer period count value
+ * @pre      \ref SCCP2_Timer_Initialize must be called
  * @param    none
  * @return   Period count value  
  */
-inline static uint32_t SCCP1_Timer_PeriodGet(void)
+inline static uint32_t SCCP2_Timer_PeriodGet(void)
 {
-    if(CCP1CON1Lbits.T32 == 1)
+    if(CCP2CON1Lbits.T32 == 1)
     {
-        return (((uint32_t)CCP1PRH << 16U) | (CCP1PRL) );
+        return (((uint32_t)CCP2PRH << 16U) | (CCP2PRL) );
     }
     else
     {
-        return (uint32_t) CCP1PRL;
+        return (uint32_t) CCP2PRL;
     }
 }
 
 /**
  * @ingroup  timerdriver
- * @brief    Gets the SCCP1-Timer elapsed count value
+ * @brief    Gets the SCCP2-Timer elapsed count value
  * @param    none
  * @return   Elapsed count value of the timer  
  */
-uint32_t SCCP1_Timer_CounterGet(void);
+uint32_t SCCP2_Timer_CounterGet(void);
 
 /**
  * @ingroup  timerdriver
- * @brief    This inline function gets the SCCP1-Timer least significant 16 bit elapsed count value
+ * @brief    This inline function gets the SCCP2-Timer least significant 16 bit elapsed count value
  * @param    none
  * @return   Least significant 16 bit elapsed count value of the timer  
  */
-inline static uint16_t SCCP1_Timer_Counter16BitGet(void)
+inline static uint16_t SCCP2_Timer_Counter16BitGet(void)
 {
-    return CCP1TMRL;
+    return CCP2TMRL;
 }
 
 /**
@@ -213,49 +213,49 @@ inline static uint16_t SCCP1_Timer_Counter16BitGet(void)
  * @param    none
  * @return   none  
  */
-void SCCP1_Timer_InterruptPrioritySet(enum INTERRUPT_PRIORITY priority);
+void SCCP2_Timer_InterruptPrioritySet(enum INTERRUPT_PRIORITY priority);
 
 
 /**
  * @ingroup    timerdriver
  * @brief      This function can be used to override default callback and to define 
- *             custom callback for SCCP1 Timeout event.
+ *             custom callback for SCCP2 Timeout event.
  * @param[in]  handler - Address of the callback function.  
  * @return     none 
  */
-void SCCP1_Timer_TimeoutCallbackRegister(void (*handler)(void));
+void SCCP2_Timer_TimeoutCallbackRegister(void (*handler)(void));
 
 /**
  * @ingroup    timerdriver
  * @brief      This function can be used to override default callback and to define 
- *             custom callback for SCCP1 Timeout event.
+ *             custom callback for SCCP2 Timeout event.
  * @param[in]  handler - Address of the callback function.  
  * @return     none 
  */
-void SCCP1_TimeoutCallbackRegister(void* handler)__attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse SCCP1_Timer_TimeoutCallbackRegister instead. ")));
+void SCCP2_TimeoutCallbackRegister(void* handler)__attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse SCCP2_Timer_TimeoutCallbackRegister instead. ")));
 
 /**
  * @ingroup  timerdriver
  * @brief    This is the default callback with weak attribute. The user can 
  *           override and implement the default callback without weak attribute 
- *           or can register a custom callback function using  \ref SCCP1_Timer_TimeoutCallbackRegister.
+ *           or can register a custom callback function using  \ref SCCP2_Timer_TimeoutCallbackRegister.
  * @param    none
  * @return   none  
  */
-void SCCP1_TimeoutCallback(void);
+void SCCP2_TimeoutCallback(void);
 
 
 #if TIMER_PERIODCOUNTSET_API_SUPPORT
 /**
  * @ingroup  timerdriver
- * @brief    Sets the SCCP1-Timer period count value
- * @pre      \ref SCCP1_Timer_Initialize must be called
+ * @brief    Sets the SCCP2-Timer period count value
+ * @pre      \ref SCCP2_Timer_Initialize must be called
  * @param[in]  count - period value
  * @return   none  
  */
-void SCCP1_Timer_PeriodCountSet(size_t count)__attribute__((deprecated ("\nThis will be removed in future MCC releases. \nUse SCCP1_Timer_PeriodSet instead. ")));
+void SCCP2_Timer_PeriodCountSet(size_t count)__attribute__((deprecated ("\nThis will be removed in future MCC releases. \nUse SCCP2_Timer_PeriodSet instead. ")));
 #endif
-#endif //SCCP1_H
+#endif //SCCP2_H
 
 /**
  End of File

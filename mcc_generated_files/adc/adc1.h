@@ -75,133 +75,133 @@
  *           This allows defining a structure with application specific name using 
  *           the 'Custom Name' field. Application specific name allows the API Portability.
 */
-extern const struct ADC_INTERFACE AdcVoiceInput;
+extern const struct ADC_INTERFACE ADCAPP;
 
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_Initialize API
  */
-#define AdcVoiceInput_Initialize ADC1_Initialize
+#define ADCAPP_Initialize ADC1_Initialize
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_Deinitialize API
  */
-#define AdcVoiceInput_Deinitialize ADC1_Deinitialize
+#define ADCAPP_Deinitialize ADC1_Deinitialize
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_Enable API
  */
-#define AdcVoiceInput_Enable ADC1_Enable
+#define ADCAPP_Enable ADC1_Enable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_Disable API
  */
-#define AdcVoiceInput_Disable ADC1_Disable
+#define ADCAPP_Disable ADC1_Disable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_SoftwareTriggerEnable API
  */
-#define AdcVoiceInput_SoftwareTriggerEnable ADC1_SoftwareTriggerEnable
+#define ADCAPP_SoftwareTriggerEnable ADC1_SoftwareTriggerEnable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_SoftwareTriggerDisable API
  */
-#define AdcVoiceInput_SoftwareTriggerDisable ADC1_SoftwareTriggerDisable
+#define ADCAPP_SoftwareTriggerDisable ADC1_SoftwareTriggerDisable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_ChannelSelect API
  */
-#define AdcVoiceInput_ChannelSelect ADC1_ChannelSelect
+#define ADCAPP_ChannelSelect ADC1_ChannelSelect
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_ConversionResultGet API
  */
-#define AdcVoiceInput_ConversionResultGet ADC1_ConversionResultGet
+#define ADCAPP_ConversionResultGet ADC1_ConversionResultGet
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_IsConversionComplete API
  */
-#define AdcVoiceInput_IsConversionComplete ADC1_IsConversionComplete
+#define ADCAPP_IsConversionComplete ADC1_IsConversionComplete
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_ResolutionSet API
  */
-#define AdcVoiceInput_ResolutionSet ADC1_ResolutionSet
+#define ADCAPP_ResolutionSet ADC1_ResolutionSet
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_InterruptEnable API
  */
-#define AdcVoiceInput_InterruptEnable ADC1_InterruptEnable
+#define ADCAPP_InterruptEnable ADC1_InterruptEnable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_InterruptDisable API
  */
-#define AdcVoiceInput_InterruptDisable ADC1_InterruptDisable
+#define ADCAPP_InterruptDisable ADC1_InterruptDisable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_InterruptFlagClear API
  */
-#define AdcVoiceInput_InterruptFlagClear ADC1_InterruptFlagClear
+#define ADCAPP_InterruptFlagClear ADC1_InterruptFlagClear
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_InterruptPrioritySet API
  */
-#define AdcVoiceInput_InterruptPrioritySet ADC1_InterruptPrioritySet
+#define ADCAPP_InterruptPrioritySet ADC1_InterruptPrioritySet
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_CommonCallbackRegister API
  */
-#define AdcVoiceInput_CommonCallbackRegister ADC1_CommonCallbackRegister
+#define ADCAPP_CommonCallbackRegister ADC1_CommonCallbackRegister
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_Tasks API
  */
-#define AdcVoiceInput_Tasks ADC1_Tasks
+#define ADCAPP_Tasks ADC1_Tasks
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_IndividualChannelInterruptEnable API
  */
-#define AdcVoiceInput_IndividualChannelInterruptEnable ADC1_IndividualChannelInterruptEnable
+#define ADCAPP_IndividualChannelInterruptEnable ADC1_IndividualChannelInterruptEnable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_IndividualChannelInterruptDisable API
  */
-#define AdcVoiceInput_IndividualChannelInterruptDisable ADC1_IndividualChannelInterruptDisable
+#define ADCAPP_IndividualChannelInterruptDisable ADC1_IndividualChannelInterruptDisable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_IndividualChannelInterruptFlagClear API
  */
-#define AdcVoiceInput_IndividualChannelInterruptFlagClear ADC1_IndividualChannelInterruptFlagClear
+#define ADCAPP_IndividualChannelInterruptFlagClear ADC1_IndividualChannelInterruptFlagClear
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_IndividualChannelInterruptPrioritySet API
  */
-#define AdcVoiceInput_IndividualChannelInterruptPrioritySet ADC1_IndividualChannelInterruptPrioritySet
+#define ADCAPP_IndividualChannelInterruptPrioritySet ADC1_IndividualChannelInterruptPrioritySet
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_ChannelCallbackRegister API
  */
-#define AdcVoiceInput_ChannelCallbackRegister ADC1_ChannelCallbackRegister
+#define ADCAPP_ChannelCallbackRegister ADC1_ChannelCallbackRegister
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_ComparatorCallbackRegister API
  */
-#define AdcVoiceInput_ComparatorCallbackRegister ADC1_ComparatorCallbackRegister
+#define ADCAPP_ComparatorCallbackRegister ADC1_ComparatorCallbackRegister
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_ChannelTasks API
  */
-#define AdcVoiceInput_ChannelTasks ADC1_ChannelTasks
+#define ADCAPP_ChannelTasks ADC1_ChannelTasks
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_SharedCorePowerEnable API
  */
-#define AdcVoiceInput_SharedCorePowerEnable ADC1_SharedCorePowerEnable
+#define ADCAPP_SharedCorePowerEnable ADC1_SharedCorePowerEnable
 /**
  * @ingroup  adcdriver
  * @brief    This macro defines the Custom Name for \ref ADC1_PWMTriggerSourceSet API
  */
-#define AdcVoiceInput_PWMTriggerSourceSet ADC1_PWMTriggerSourceSet
+#define ADCAPP_PWMTriggerSourceSet ADC1_PWMTriggerSourceSet
 
 // Section: Driver Interface Functions
 
@@ -309,6 +309,9 @@ inline static uint16_t ADC1_ConversionResultGet( enum ADC_CHANNEL channel )
         case Microphone:
                 result = ADCBUF5;
                 break;
+        case Tremole_speed:
+                result = ADCBUF6;
+                break;
         default:
                 break;
     }
@@ -335,6 +338,9 @@ inline static bool ADC1_IsConversionComplete(enum ADC_CHANNEL channel)
     {
         case Microphone:
                 status = ADSTATLbits.AN5RDY;
+                break;
+        case Tremole_speed:
+                status = ADSTATLbits.AN6RDY;
                 break;
         default:
                 break;
@@ -445,6 +451,10 @@ inline static void ADC1_IndividualChannelInterruptEnable(enum ADC_CHANNEL channe
                 IEC6bits.ADCAN5IE = 1;
                 ADIELbits.IE5 = 1;
                 break;
+        case Tremole_speed:
+                IEC6bits.ADCAN6IE = 1;
+                ADIELbits.IE6 = 1;
+                break;
         default:
                 break;
     }
@@ -464,6 +474,10 @@ inline static void ADC1_IndividualChannelInterruptDisable(enum ADC_CHANNEL chann
                 IEC6bits.ADCAN5IE = 0;
                 ADIELbits.IE5 = 0;
                 break;
+        case Tremole_speed:
+                IEC6bits.ADCAN6IE = 0;
+                ADIELbits.IE6 = 0;
+                break;
         default:
                 break;
     }
@@ -481,6 +495,9 @@ inline static void ADC1_IndividualChannelInterruptFlagClear(enum ADC_CHANNEL cha
     {
         case Microphone:
                 IFS6bits.ADCAN5IF = 0;
+                break;
+        case Tremole_speed:
+                IFS6bits.ADCAN6IF = 0;
                 break;
         default:
                 break;
@@ -500,6 +517,9 @@ inline static void ADC1_IndividualChannelInterruptPrioritySet(enum ADC_CHANNEL c
 	{
 		case Microphone:
 				IPC24bits.ADCAN5IP = priorityValue;
+				break;
+		case Tremole_speed:
+				IPC24bits.ADCAN6IP = priorityValue;
 				break;
 		default:
 				break;

@@ -15,3 +15,4 @@ Below is the hardware connection guide
 * **DAC Configuration:** Internal **High-Speed DAC** updated at the end of each ISR.
 * **Processing:** **Fixed-point arithmetic** using native DSP bit-shifting (`>>`).
 * **Noise Gate:** Evaluated in the ISR using absolute values (`abs()`) against a threshold.
+

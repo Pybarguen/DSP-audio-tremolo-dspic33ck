@@ -55,6 +55,10 @@ void INTERRUPT_Initialize(void)
     // Priority: 1
     IPC1bits.CCT1IP = 1;
     
+    // CCT2: CCP2 Timer Event
+    // Priority: 1
+    IPC6bits.CCT2IP = 1;
+    
 }
 
 void INTERRUPT_Deinitialize(void)
@@ -63,4 +67,5 @@ void INTERRUPT_Deinitialize(void)
     IPC22bits.ADCIP = 4;
     IPC11bits.DMTIP = 4;
     IPC1bits.CCT1IP = 4;
+    IPC6bits.CCT2IP = 4;
 }

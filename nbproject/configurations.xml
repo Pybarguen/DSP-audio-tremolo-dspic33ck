@@ -31,8 +31,9 @@
           <itemPath>mcc_generated_files/system/dmt.h</itemPath>
         </logicalFolder>
         <logicalFolder name="timer" displayName="timer" projectFiles="true">
-          <itemPath>mcc_generated_files/timer/sccp1.h</itemPath>
           <itemPath>mcc_generated_files/timer/timer_interface.h</itemPath>
+          <itemPath>mcc_generated_files/timer/sccp2.h</itemPath>
+          <itemPath>mcc_generated_files/timer/sccp1.h</itemPath>
         </logicalFolder>
       </logicalFolder>
     </logicalFolder>
@@ -69,15 +70,16 @@
             <itemPath>mcc_generated_files/system/src/config_bits.c</itemPath>
             <itemPath>mcc_generated_files/system/src/system.c</itemPath>
             <itemPath>mcc_generated_files/system/src/pins.c</itemPath>
-            <itemPath>mcc_generated_files/system/src/where_was_i.s</itemPath>
             <itemPath>mcc_generated_files/system/src/traps.c</itemPath>
             <itemPath>mcc_generated_files/system/src/interrupt.c</itemPath>
-            <itemPath>mcc_generated_files/system/src/dmt_asm.s</itemPath>
+            <itemPath>mcc_generated_files/system/src/where_was_i.s</itemPath>
             <itemPath>mcc_generated_files/system/src/dmt.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/dmt_asm.s</itemPath>
           </logicalFolder>
         </logicalFolder>
         <logicalFolder name="timer" displayName="timer" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/timer/src/sccp2.c</itemPath>
             <itemPath>mcc_generated_files/timer/src/sccp1.c</itemPath>
           </logicalFolder>
         </logicalFolder>

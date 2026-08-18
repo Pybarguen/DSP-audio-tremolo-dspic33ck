@@ -96,6 +96,57 @@
 
 /**
  * @ingroup  pinsdriver
+ * @brief    Sets the RD13 GPIO Pin which has a custom name of Button to High
+ * @pre      The RD13 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define Button_SetHigh()          (_LATD13 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RD13 GPIO Pin which has a custom name of Button to Low
+ * @pre      The RD13 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define Button_SetLow()           (_LATD13 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RD13 GPIO Pin which has a custom name of Button
+ * @pre      The RD13 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define Button_Toggle()           (_LATD13 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RD13 GPIO Pin which has a custom name of Button
+ * @param    none
+ * @return   none  
+ */
+#define Button_GetValue()         _RD13
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RD13 GPIO Pin which has a custom name of Button as Input
+ * @param    none
+ * @return   none  
+ */
+#define Button_SetDigitalInput()  (_TRISD13 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RD13 GPIO Pin which has a custom name of Button as Output
+ * @param    none
+ * @return   none  
+ */
+#define Button_SetDigitalOutput() (_TRISD13 = 0)
+
+/**
+ * @ingroup  pinsdriver
  * @brief    Initializes the PINS module
  * @param    none
  * @return   none  

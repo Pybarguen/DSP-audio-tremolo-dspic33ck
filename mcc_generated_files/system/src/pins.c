@@ -68,7 +68,7 @@ void PINS_Initialize(void)
     CNPUA = 0x0000U;
     CNPUB = 0x0000U;
     CNPUC = 0x0000U;
-    CNPUD = 0x0000U;
+    CNPUD = 0x2000U;
     CNPDA = 0x0000U;
     CNPDB = 0x0000U;
     CNPDC = 0x0000U;
@@ -90,7 +90,7 @@ void PINS_Initialize(void)
     ANSELA = 0x001FU;
     ANSELB = 0x039FU;
     ANSELC = 0x00CFU;
-    ANSELD = 0x2000U;
+    ANSELD = 0x0000U;
 
 }
 

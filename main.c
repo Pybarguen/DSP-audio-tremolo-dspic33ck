@@ -57,7 +57,7 @@ uint16_t current_data_mic=0;
 
 //Variable temportal para procesar señal original con el array del tremolo
 int32_t temp=0;
-
+int32_t dac_val=0;
 
 //Variables procesamiento tremolo
 uint16_t counter = 0;
@@ -116,29 +116,7 @@ void Get_mic()
     
         
     
-     uint32_t tremole_speed = (uint32_t)(1000UL * (uint32_t)current_data_pot) / 4098UL;
      
-    
-     if (tremole_speed < 5) 
-{
-    tremole_speed = 5; 
-}
-     
-     
-    
-    if(counter>=tremole_speed ){
-        
-        index++;
-        counter = 0;
-        
-         if(index>=Tremolo_Step)
-    {
-        
-        index=0;
-    }
-        
-        
-    }
      
     
     
@@ -171,16 +149,53 @@ void Get_mic()
         signal_audio = 0;
         
     }
+    
+    
+    if(tremole_state==1)
+    {
+        
+        uint32_t tremole_speed = (uint32_t)(1000UL * (uint32_t)current_data_pot) / 4098UL;
+     
+    
+     if (tremole_speed < 5) 
+{
+    tremole_speed = 5; 
+}
+     
+     
+    
+    if(counter>=tremole_speed ){
+        
+        index++;
+        counter = 0;
+        
+         if(index>=Tremolo_Step)
+    {
+        
+        index=0;
+    }
+        
+        
+    }
     //variable temporal para alojar multiplicacion tremolo
     temp = (int32_t)signal_audio * Tremolo_lut[index];
     
     // Desplazamos para dividir por 1024 y volvemos a guardar en 16 bits
     signal_processed = (int16_t)(temp >> 10);
     
+     //Volver a sumar el offset para el DAC
+   dac_val = (int32_t)signal_processed+ 2048;
+    
+    }
+    else
+    {
+       dac_val = (int32_t)signal_audio+ 2048;
+        
+    }
     
     
-    //Volver a sumar el offset para el DAC
-    int32_t dac_val = (int32_t)signal_processed+ 2048;
+    
+   
     
     // Control de desborde seguro para el hardware
     if (dac_val > 4095) dac_val = 4095;
